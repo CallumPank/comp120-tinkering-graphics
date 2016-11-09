@@ -1,38 +1,28 @@
 import pygame
 import sys
+from pygame.locals import *
+
 pygame.init()
 
-white = (255, 255, 255)
-black = (0, 0, 0)
-red = (255, 0, 0)
+screen = pygame.display.set_mode((480, 480))
+image = pygame.image.load('Happy.jpg')
+image2 = pygame.image.load('Sad.jpg')
 
-width = 800
-height = 600
+font = pygame.font.SysFont('Sans', 38)
+text = font.render("When You're Having A Nice Day", True, (255, 255, 255))
+text2 = font.render("And Drop Your Phone", True, (255, 255, 255))
+pygame.time.Clock()
 
-gameDisplay = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Meme")
+screen.blit(image, (0, 0))
+screen.blit(image2, (0, 0))
+screen.blit(text, (20, 0))
+screen.blit(text2, (90, 400))
 
-gameExit = False
+pygame.display.flip()
 
-lead_x = width/2
-lead_y = height/2
-
-lead_x_change = 0
-lead_y_change = 0
-
-clock = pygame.time.Clock()
-
-block_size = 10
-FPS = 30
-
-font = pygame.font.SysFont(None, 25)
-
-def message_to_screen(msg, red):
-    screen_text = font.render(msg, True, color)
-    gameDisplay.blit(screen_text, [width/2, height/2])
 
 while True:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == QUIT:
             pygame.quit()
             sys.exit()
